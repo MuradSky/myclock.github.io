@@ -45,7 +45,7 @@
 			return i;
 		}
 		timeG();
-
+		//Audio 		
 
 		let nAudio = new Audio();
 			i = 0;
@@ -63,7 +63,7 @@
 				});
 			}
 		}
-		nAudio.addEventListener('loadedmetadata', onplay, true);
+		nAudio.addEventListener('loadedmetadata', onPlay, true);
 		nAudio.addEventListener('ended', function() {
 			i = ++i < playList.length ? i : 0;
 			nAudio.src = playList[i];
