@@ -68,7 +68,7 @@ span.fade{
 	height: 100vh;
 	display: none;
 }
-@media screen and (max-width: 441px){
+@media screen and (max-width: 768px){
 	.fullScreen__video{
 		display: none;
 	}
