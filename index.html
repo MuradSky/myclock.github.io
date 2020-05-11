@@ -47,32 +47,35 @@
 		timeG();
 		//Audio 		
 
-		let nAudio = new Audio();
-			i = 0;
-			let playList = new Array('Untitled1.mp3', 'unt2.mp3', 'Untitled.mp3');
-		function onPlay() {
-			let play = nAudio.play();
-			if(typeof(play) != 'undefined') {
-				play.catch(() => {
-					nAudio.muted = 1;
-					let t = setTimeout(function(){
-						clearTimeot(t);
-						nAudio.muted = 0;
-						onPlay();	
-					},1000);
-				});
-			}
+	    let nAudio = new Audio();
+	    let i = 0;
+	    let playList = new Array('Untitled1.mp3', 'unt2.mp3', 'Untitled.mp3');
+
+	    function onPlay () {
+		let play = nAudio.play();
+		if (typeof(play) != 'undefined') {
+		    play.catch(()=> {
+			nAudio.muted = 1;
+			let t = setTimeout(function () {
+			    clearTimeout(t);
+			    nAudio.muted = 0;
+			    onPlay();
+			}, 1000);
+		    });
 		}
-		nAudio.addEventListener('loadedmetadata', onPlay, true);
-		nAudio.addEventListener('ended', function() {
-			i = ++i < playList.length ? i : 0;
-			nAudio.src = playList[i];
-			onPlay();
-		}, true);
-		try{
-			nAudio.src = playList[i];
-			nAudio.load();
-		} catch (e) {}
+	    }
+
+	    nAudio.addEventListener('loadedmetadata', onPlay, true);
+	    nAudio.addEventListener('ended', function() {
+		i = ++i < playList.length ? i : 0;
+		nAudio.src = playList[i];
+		onPlay();
+	    }, true);
+
+	    try {
+		nAudio.src = playList[i];
+		nAudio.load();
+	    } catch (e) {}
 	</script>
 </body>
 </html>
