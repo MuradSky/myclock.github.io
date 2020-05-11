@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My Clock</title>
+	<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+	<div class="fullScreen">
+		<div class="overlay">
+
+			<div class="clock" id="time"></div>		
+
+		</div>
+		<video loop="loop" autoplay="autoplay" poster="planet.jpg" class="fullScreen__video" preload="auto">
+			<source src="planet.mp4" type="video/mp4">
+		</video>
+	</div>
+
+	<script>
+
+		function complete() {
+			clearInterval(timer);
+			timer = null;
+		}
+
+		function timeG() {
+			let tm = new Date();
+			let h = tm.getHours();
+			let m = tm.getMinutes();
+			let s = tm.getSeconds();
+
+			m = checkTime(m);
+			s = checkTime(s);
+
+			document.getElementById('time').innerHTML = h + ':' + m + ':' +s;
+			t= setTimeout('timeG()', 500);
+		}
+
+		function checkTime(i) {
+			if(i < 10) {
+				i = '0' + i;
+			}
+			return i;
+		}
+		timeG();
+
+
+		let nAudio = new Audio();
+			i = 0;
+			let playList = new Array('Untitled1.mp3', 'unt2.mp3', 'Untitled.mp3');
+
+			nAudio.addEventListener('ended', function() {
+				i = ++i < playList.length ? i : 0;
+				nAudio.src = playList[i];
+				nAudio.play();
+			}, true);
+			nAudio.volume = 0.5;
+			nAudio.loop = false;
+			nAudio.src = playList[0];
+			nAudio.play();
+
+			let p = playList[0];
+			console.log(p); 
+
+	</script>
+</body>
+</html>
