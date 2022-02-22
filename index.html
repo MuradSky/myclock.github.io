@@ -68,8 +68,18 @@
 		    });
 		}
 	    }
-
-	    nAudio.addEventListener('loadedmetadata', onPlay, true);
+	    let soundPlay = false;
+	    const start = ()=> {
+		if(soundPlay) return
+	    	nAudio.addEventListener('loadedmetadata', onPlay, true);
+		soundPlay = true
+	    }
+	    
+	    document.addEventListener("DOMContentLoaded", start)
+	    document.addEventListener("hover", start)
+	    document.addEventListener("mouseover", start)
+		
+	    
 	    nAudio.addEventListener('ended', function() {
 		i = ++i < playList.length ? i : 0;
 		nAudio.src = playList[i];
